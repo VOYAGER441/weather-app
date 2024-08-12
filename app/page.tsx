@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
 import { title } from "process";
 import Input from "./component/Input";
+import TopCity from "./component/Topcity";
 
 
 
@@ -30,7 +31,7 @@ export default function Home() {
 
   return (
     <>
-      <div 
+      <div
         style={{
           backgroundImage: `url(${backgroundImg})`,
           opacity: "0.8",
@@ -41,15 +42,14 @@ export default function Home() {
         }}
       >
         <div className={styles.box}>
-          
           <div className={styles.inputBox}>
-          <h1 className={styles.title}>Weather App</h1><br/>
-          <Input/>
+            <h1 className={styles.title}>Weather App</h1>
+            <br />
+            <TopCity/>
+            <Input />
           </div>
-          
         </div>
       </div>
-     
     </>
   );
 }

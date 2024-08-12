@@ -1,0 +1,51 @@
+.Inputform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Inputform div {
+  display: flex; /* Ensure the icons are in a flex container */
+  align-items: center; /* Align icons vertically in the center */
+}
+
+.icon {
+  margin-left: 10px;
+  font-size: 1rem;
+}
+
+
+
+
+/* cities */
+
+.cities {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 6px;
+}
+
+.cityButton {
+  color: whitesmoke;
+  outline: none;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  font-size: medium;
+}
+
+@media screen and (max-width: 600px) {
+  .cities {
+    flex-direction: row;
+    flex-wrap: wrap; /* Example: stack items vertically on small screens */
+  }
+
+  .cityButton {
+    font-size: small; /* Example: reduce font size on small screens */
+    padding: 8px; /* Example: adjust padding on small screens */
+    margin: 5px;  /* Example: reduce margin on small screens */
+  }
+}

@@ -1,9 +1,27 @@
+"use client";
 import React from "react";
+import { FaSearchLocation } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
+import { TbTemperatureCelsius } from "react-icons/tb";
+import { TbTemperatureFahrenheit } from "react-icons/tb";
+import styles from './component.module.css';
 
 const Input = () => {
   return (
     <>
-      <input className="styled-input" placeholder="Enter location here..." />
+      <form className={styles.Inputform}>
+        <input type="text" className="styled-input" placeholder="Enter location here..." />
+        <div>
+        <FaSearchLocation className={styles.icon} />
+        <FaLocationDot className={styles.icon} />
+        <button style={{border:"none",background:"transparent"}}>
+        <TbTemperatureCelsius size={20} style={{ marginLeft: "10px" }} />
+        </button>/
+        <button style={{border:"none",background:"transparent"}}>
+        <TbTemperatureFahrenheit  size={20} />
+        </button>
+        </div>
+      </form>
       <style jsx>{`
         .styled-input {
           width: 100%;
@@ -13,8 +31,10 @@ const Input = () => {
           border: 1px solid #ccc;
           border-radius: 4px;
           font-size: 16px;
+        
           transition: border-color 0.3s ease, box-shadow 0.3s ease;
           outline: none;
+          {/* margin-right:5px; */}
         }
 
         .styled-input:focus {
