@@ -5,7 +5,9 @@ import styles from "./page.module.css";
 import { title } from "process";
 import Input from "./component/Input";
 import TopCity from "./component/Topcity";
-
+import Time from "./component/Time";
+import Temp from "./component/Temp";
+import Forecast from "./component/Forecast";
 
 
 export default function Home() {
@@ -47,6 +49,9 @@ export default function Home() {
             <br />
             <TopCity/>
             <Input />
+            <Time/>
+            <Temp/>
+            <Forecast/>
           </div>
         </div>
       </div>

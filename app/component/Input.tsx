@@ -15,10 +15,10 @@ const Input = () => {
         <FaSearchLocation className={styles.icon} />
         <FaLocationDot className={styles.icon} />
         <button style={{border:"none",background:"transparent"}}>
-        <TbTemperatureCelsius size={20} style={{ marginLeft: "10px" }} />
+        <TbTemperatureCelsius size={20} style={{ marginLeft: "10px",cursor:"pointer" }} />
         </button>/
         <button style={{border:"none",background:"transparent"}}>
-        <TbTemperatureFahrenheit  size={20} />
+        <TbTemperatureFahrenheit  size={20} style={{cursor:"pointer"}}/>
         </button>
         </div>
       </form>
