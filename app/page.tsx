@@ -8,16 +8,16 @@ import TopCity from "./component/Topcity";
 import Time from "./component/Time";
 import Temp from "./component/Temp";
 import Forecast from "./component/Forecast";
+import getFormattedData from "./services/weather.services";
 
-// function App() {
 //   const Weather = async () => {
 //     const data: any = await getWeatherData("weather", { q: "kolkata" });
 //     console.log(data);
 //     console.log('data');
     
 //   };
-// }
-// App();
+
+// Weather();
 
 export default function Home() {
   // background staff
@@ -41,7 +41,15 @@ export default function Home() {
     }
   }, []);
 
-  // api call
+  // api call for test
+  const Weather = async () => {
+    const data: any = await getFormattedData({ q: "london" });
+    console.log(data);
+    console.log('data');
+    
+  };
+
+Weather();
 
 
   return (
@@ -72,3 +80,5 @@ export default function Home() {
     </>
   );
 }
+
+

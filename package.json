@@ -10,12 +10,14 @@
   },
   "dependencies": {
     "@iconscout/react-unicons": "^2.0.2",
+    "luxon": "^3.5.0",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1"
   },
   "devDependencies": {
+    "@types/luxon": "^3.4.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
