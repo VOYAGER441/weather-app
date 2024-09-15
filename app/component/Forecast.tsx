@@ -1,10 +1,14 @@
 import Image from "next/image";
 import React from "react";
 
-const Forecast = () => {
+const Forecast = ({title}:any) => {
   return (
     <>
-      <div style={{width:"90%"}}>
+      
+      <br></br>
+      {/* daily forecast */}
+      {/* for heading */}
+      <div style={{ width: "90%" }}>
         <div
           style={{
             display: "flex",
@@ -20,11 +24,12 @@ const Forecast = () => {
               textTransform: "uppercase",
             }}
           >
-            hourly forecast
+            {title}
           </p>
         </div>
         <hr />
 
+        {/* for chart */}
         <div
           style={{
             display: "flex",
@@ -34,6 +39,7 @@ const Forecast = () => {
             color: "white",
           }}
         >
+          {/* 1st day */}
           <div
             style={{
               display: "flex",
@@ -43,9 +49,16 @@ const Forecast = () => {
             }}
           >
             <p
-              style={{ fontWeight: "500", fontSize: ".7rem", marginTop: "5px" }}
+              style={{
+                fontWeight: "500",
+                fontSize: ".8rem",
+                marginTop: "5px",
+                marginLeft: "3px",
+                textAlign: "center",
+                textTransform: "uppercase",
+              }}
             >
-              04:30 PM
+              sun
             </p>
             <Image
               src="/assets/sun.jpg"
@@ -58,13 +71,14 @@ const Forecast = () => {
               style={{
                 fontWeight: "500",
                 fontSize: ".7rem",
-                marginLeft: "7px",
+                marginLeft: "9px",
               }}
             >
               22°
             </p>
           </div>
 
+          {/* 2nd day */}
           <div
             style={{
               display: "flex",
@@ -74,9 +88,16 @@ const Forecast = () => {
             }}
           >
             <p
-              style={{ fontWeight: "500", fontSize: ".7rem", marginTop: "5px" }}
+              style={{
+                fontWeight: "500",
+                fontSize: ".8rem",
+                marginTop: "5px",
+                marginLeft: "3px",
+                textAlign: "center",
+                textTransform: "uppercase",
+              }}
             >
-              04:30 PM
+              sun
             </p>
             <Image
               src="/assets/sun.jpg"
@@ -89,13 +110,13 @@ const Forecast = () => {
               style={{
                 fontWeight: "500",
                 fontSize: ".7rem",
-                marginLeft: "7px",
+                marginLeft: "9px",
               }}
             >
               22°
             </p>
           </div>
-
+          {/* 3rd day */}
           <div
             style={{
               display: "flex",
@@ -105,9 +126,16 @@ const Forecast = () => {
             }}
           >
             <p
-              style={{ fontWeight: "500", fontSize: ".7rem", marginTop: "5px" }}
+              style={{
+                fontWeight: "500",
+                fontSize: ".8rem",
+                marginTop: "5px",
+                marginLeft: "3px",
+                textAlign: "center",
+                textTransform: "uppercase",
+              }}
             >
-              04:30 PM
+              sun
             </p>
             <Image
               src="/assets/sun.jpg"
@@ -120,13 +148,13 @@ const Forecast = () => {
               style={{
                 fontWeight: "500",
                 fontSize: ".7rem",
-                marginLeft: "7px",
+                marginLeft: "9px",
               }}
             >
               22°
             </p>
           </div>
-
+          {/* 4th day */}
           <div
             style={{
               display: "flex",
@@ -136,9 +164,16 @@ const Forecast = () => {
             }}
           >
             <p
-              style={{ fontWeight: "500", fontSize: ".7rem", marginTop: "5px" }}
+              style={{
+                fontWeight: "500",
+                fontSize: ".8rem",
+                marginTop: "5px",
+                marginLeft: "3px",
+                textAlign: "center",
+                textTransform: "uppercase",
+              }}
             >
-              04:30 PM
+              sun
             </p>
             <Image
               src="/assets/sun.jpg"
@@ -151,13 +186,13 @@ const Forecast = () => {
               style={{
                 fontWeight: "500",
                 fontSize: ".7rem",
-                marginLeft: "7px",
+                marginLeft: "9px",
               }}
             >
               22°
             </p>
           </div>
-
+          {/* 5th day */}
           <div
             style={{
               display: "flex",
@@ -167,9 +202,16 @@ const Forecast = () => {
             }}
           >
             <p
-              style={{ fontWeight: "500", fontSize: ".7rem", marginTop: "5px" }}
+              style={{
+                fontWeight: "500",
+                fontSize: ".8rem",
+                marginTop: "5px",
+                marginLeft: "3px",
+                textAlign: "center",
+                textTransform: "uppercase",
+              }}
             >
-              04:30 PM
+              sun
             </p>
             <Image
               src="/assets/sun.jpg"
@@ -182,7 +224,7 @@ const Forecast = () => {
               style={{
                 fontWeight: "500",
                 fontSize: ".7rem",
-                marginLeft: "7px",
+                marginLeft: "9px",
               }}
             >
               22°

@@ -9,8 +9,18 @@ import Time from "./component/Time";
 import Temp from "./component/Temp";
 import Forecast from "./component/Forecast";
 
+// function App() {
+//   const Weather = async () => {
+//     const data: any = await getWeatherData("weather", { q: "kolkata" });
+//     console.log(data);
+//     console.log('data');
+    
+//   };
+// }
+// App();
 
 export default function Home() {
+  // background staff
   const [backgroundImg, setBackgroundImg] = useState("");
 
   useEffect(() => {
@@ -31,6 +41,9 @@ export default function Home() {
     }
   }, []);
 
+  // api call
+
+
   return (
     <>
       <div
@@ -47,11 +60,12 @@ export default function Home() {
           <div className={styles.inputBox}>
             <h1 className={styles.title}>Weather App</h1>
             <br />
-            <TopCity/>
+            <TopCity />
             <Input />
-            <Time/>
-            <Temp/>
-            <Forecast/>
+            <Time />
+            <Temp />
+            <Forecast title="hourly forecast" />
+            <Forecast title="daily forecast" />
           </div>
         </div>
       </div>
