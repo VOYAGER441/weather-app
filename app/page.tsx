@@ -9,15 +9,16 @@ import Time from "./component/Time";
 import Temp from "./component/Temp";
 import Forecast from "./component/Forecast";
 import getFormattedData from "./services/weather.services";
+import { useRouter } from "next/navigation";
 
-//   const Weather = async () => {
-//     const data: any = await getWeatherData("weather", { q: "kolkata" });
-//     console.log(data);
-//     console.log('data');
-    
-//   };
+declare global {
+  interface Window {
+    util: {
+      open: (button: HTMLButtonElement) => void;
+    };
+  }
+}
 
-// Weather();
 
 export default function Home() {
   // background staff
@@ -45,12 +46,22 @@ export default function Home() {
   const Weather = async () => {
     const data: any = await getFormattedData({ q: "london" });
     console.log(data);
-    console.log('data');
-    
+    console.log("data");
   };
 
-Weather();
+  Weather();
 
+
+  // FOR HOURLY FORECAST
+  const router = useRouter(); 
+  useEffect(() => {
+    window.util = {
+      open: (button:any) => {
+        
+        router.push("/Hourly");
+      },
+    };
+  }, [router]);
 
   return (
     <>
@@ -59,8 +70,9 @@ Weather();
           backgroundImage: `url(${backgroundImg})`,
           opacity: "0.8",
           backgroundSize: "cover",
+            backgroundAttachment: "fixed",
           backgroundPosition: "center",
-          height: "100vh",
+          height: "100%",
           width: "100%",
         }}
       >
@@ -72,13 +84,29 @@ Weather();
             <Input />
             <Time />
             <Temp />
-            <Forecast title="hourly forecast" />
+            {/* <Forecast title="hourly forecast" /> */}
             <Forecast title="daily forecast" />
+          </div>
+          <div>
+            <button onClick={(event) =>
+              window.util.open(event.currentTarget as HTMLButtonElement)
+            }
+            
+            style={{padding:"5px",
+              backgroundColor:"transparent",
+              // borderBlockColor:"black",
+              marginTop:'5px',
+              fontSize:"1rem",
+              borderRadius:"15px"
+            }}
+            
+            >
+            Click Here For Hourly Forecast
+            </button>
           </div>
         </div>
       </div>
     </>
   );
 }
-
 
