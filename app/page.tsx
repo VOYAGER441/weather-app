@@ -2,7 +2,6 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
-import { title } from "process";
 import Input from "./component/Input";
 import TopCity from "./component/Topcity";
 import Time from "./component/Time";
@@ -10,6 +9,7 @@ import Temp from "./component/Temp";
 import Forecast from "./component/Forecast";
 import getFormattedData from "./services/weather.services";
 import { useRouter } from "next/navigation";
+import { DateTime } from "luxon"; // Assuming you're using Luxon for date manipulation
 
 declare global {
   interface Window {
@@ -20,30 +20,7 @@ declare global {
 }
 
 export default function Home() {
-  // background staff
-  const [backgroundImg, setBackgroundImg] = useState("");
-
-  useEffect(() => {
-    const hour = new Date().getHours();
-
-    if (hour >= 5 && hour < 12) {
-      console.log("morning");
-
-      setBackgroundImg("../assets/morning.jpg");
-    } else if (hour >= 12 && hour < 18) {
-      console.log("afternoon");
-
-      setBackgroundImg("../assets/afternoon.jpg");
-    } else {
-      console.log("night");
-
-      setBackgroundImg("../assets/night.jpg");
-    }
-  }, []);
-
-  // api call for test
-
-  // FOR HOURLY FORECAST
+  // Router hook for navigation
   const router = useRouter();
   useEffect(() => {
     window.util = {
@@ -53,49 +30,77 @@ export default function Home() {
     };
   }, [router]);
 
-  // for data
+  // For weather data state
   const [query, setQuery] = useState({ q: "mumbai" });
   const [units, setUnits] = useState("metric");
   const [weather, setWeather]: any = useState(null);
-  const [loading, setLoading] = useState(true); // Optional: Track loading state
+  const [loading, setLoading] = useState(true); // Track loading state
   const [error, setError] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchWeather = async () => {
-  //     const data: any = await getFormattedData({ ...query, units }).then(
-  //       (data: any) => {
-  //         setWeather(data);
-  //       }
-  //     );
-  //     console.log(data);
-  //     console.log("data");
-  //   };
-
-  //   fetchWeather();
-  // }, [query, units]);
-
+  // Fetch weather data
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        setLoading(true); // Start loading
+        setLoading(true);
         const data: any = await getFormattedData({ ...query, units });
         setWeather(data);
         console.log(data); // Log the fetched data
       } catch (error: any) {
-        setError(error); // Handle errors
+        setError(error);
         console.error("Error fetching weather data:", error);
       } finally {
-        setLoading(false); // End loading
+        setLoading(false);
       }
     };
 
     fetchWeather();
 
-    // Optionally handle cleanup if needed
     return () => {
       // Cleanup logic if necessary
     };
   }, [query, units]);
+
+  // Background image state
+  const [backgroundImg, setBackgroundImg] = useState("");
+
+  // Update background based on weather data and local time
+  useEffect(() => {
+    if (!weather) return;
+
+    // Extract necessary data
+    const { details, sunrise, sunset, dt, timezone } = weather;
+
+    // Get local time based on timezone and current time (dt)
+    const localTime = DateTime.fromSeconds(dt).setZone(`UTC+${timezone / 3600}`);
+    console.log(localTime);
+    
+
+    const hour = localTime.hour;
+
+    // Determine the time of day
+    let timeOfDay = "";
+    if (hour >= 5 && hour < 12) {
+      timeOfDay = "morning";
+    } else if (hour >= 12 && hour < 18) {
+      timeOfDay = "afternoon";
+    } else {
+      timeOfDay = "night";
+    }
+
+    // Determine the background based on weather conditions and time of day
+    const condition = details.toLowerCase();
+    if (condition.includes("rain")) {
+      setBackgroundImg(`../assets/${timeOfDay}_rain.jpg`);
+    } else if (condition.includes("haze")) {
+      setBackgroundImg(`../assets/${timeOfDay}_haze.jpg`);
+    } else if (condition.includes("clear")) {
+      setBackgroundImg(`../assets/${timeOfDay}_clear.jpg`);
+    } else if (condition.includes("clouds")) {
+      setBackgroundImg(`../assets/${timeOfDay}_cloudy.jpg`);
+    } else {
+      setBackgroundImg(`../assets/default.jpg`); // Fallback image
+    }
+  }, [weather]);
 
   return (
     <>
@@ -132,7 +137,6 @@ export default function Home() {
               style={{
                 padding: "5px",
                 backgroundColor: "transparent",
-                // borderBlockColor:"black",
                 marginTop: "5px",
                 fontSize: "1rem",
                 borderRadius: "15px",

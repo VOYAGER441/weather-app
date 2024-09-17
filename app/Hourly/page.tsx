@@ -29,6 +29,7 @@ export default function Home() {
   useEffect(() => {
     const hour = new Date().getHours();
 
+    // Use absolute paths from the public folder
     if (hour >= 5 && hour < 12) {
       setBackgroundImg("../assets/morning.jpg");
     } else if (hour >= 12 && hour < 18) {
@@ -60,25 +61,24 @@ export default function Home() {
         window.myWidgetParam.push({
           id: 11,
           cityid: weatherData.id, // Update city ID here
-          appid: API_KEYs,
+          appid: API_KEY,
           units: "metric",
           containerid: "openweathermap-widget-11",
         });
 
         // Refresh the widget by removing and re-adding the script
-        const existingScript = document.getElementById('weather-widget-script');
+        const existingScript = document.getElementById("weather-widget-script");
         if (existingScript) {
           existingScript.remove();
         }
 
         const script = document.createElement("script");
-        script.id = 'weather-widget-script';
+        script.id = "weather-widget-script";
         script.src =
           "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
         script.async = true;
         script.charset = "utf-8";
         document.body.appendChild(script);
-
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -86,29 +86,11 @@ export default function Home() {
 
     fetchData();
 
-    // OpenWeatherMap widget integration
-    const script = document.createElement("script");
-    script.src =
-      "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    // Ensure myWidgetParam is set before loading the widget script
-    window.myWidgetParam = window.myWidgetParam || [];
-    window.myWidgetParam.push({
-      id: 11,
-      cityid: "2643743", // Default city ID for the widget
-      appid: API_KEYs,
-      units: "metric",
-      containerid: "openweathermap-widget-11",
-    });
-
     // Clean up the script elements when the component unmounts
     return () => {
-      document.body.removeChild(script);
-      const widgetScript = document.getElementById('weather-widget-script');
-      if (widgetScript) {
-        document.body.removeChild(widgetScript);
+      const scriptToRemove = document.getElementById("weather-widget-script");
+      if (scriptToRemove) {
+        scriptToRemove.remove();
       }
     };
   }, [city]);
