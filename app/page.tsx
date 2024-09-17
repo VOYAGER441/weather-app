@@ -138,7 +138,7 @@ export default function Home() {
                 borderRadius: "15px",
               }}
             >
-              Click Here For Air Pollution Data
+              Click Here For More Details
             </button>
           </div>
         </div>
