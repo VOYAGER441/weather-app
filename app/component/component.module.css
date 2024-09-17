@@ -40,6 +40,7 @@
   border: none;
   background: transparent;
   font-size: medium;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {

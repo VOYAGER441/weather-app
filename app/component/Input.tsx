@@ -1,27 +1,67 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { FaSearchLocation } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-import { TbTemperatureCelsius } from "react-icons/tb";
-import { TbTemperatureFahrenheit } from "react-icons/tb";
+import { TbTemperatureCelsius, TbTemperatureFahrenheit } from "react-icons/tb";
 import styles from './component.module.css';
 
-const Input = () => {
+const Input = ({ setQuery, units, setUnits }: any) => {
+  const [city, setCity] = useState("");
+
+  // Handle the search
+  const handleSearch = (e: React.MouseEvent<SVGElement>) => {
+    e.preventDefault(); // Prevent any default behavior (though not necessary here)
+    if (city !== "") {
+      setQuery({ q: city });
+    }
+  };
+
+  const handleLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        setQuery({ lat, lon });
+      }, (error) => {
+        console.error("Error fetching location: ", error);
+      });
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  };
+  
+
   return (
     <>
-      <form className={styles.Inputform}>
-        <input type="text" className="styled-input" placeholder="Enter location here..." />
+      <form className={styles.Inputform} onSubmit={(e) => e.preventDefault()}>
+        <input
+          value={city}
+          onChange={(e) => setCity(e.currentTarget.value)}
+          type="text"
+          className="styled-input"
+          placeholder="Enter location here..."
+        />
         <div>
-        <FaSearchLocation className={styles.icon} />
-        <FaLocationDot className={styles.icon} />
-        <button style={{border:"none",background:"transparent"}}>
-        <TbTemperatureCelsius size={20} style={{ marginLeft: "10px",cursor:"pointer" }} />
-        </button>/
-        <button style={{border:"none",background:"transparent"}}>
-        <TbTemperatureFahrenheit  size={20} style={{cursor:"pointer"}}/>
-        </button>
+          {/* Trigger search on click */}
+          <FaSearchLocation className={styles.icon} onClick={handleSearch} />
+          <FaLocationDot className={styles.icon} 
+          onClick={handleLocation}/>
+
+          {/* Toggle between Celsius and Fahrenheit */}
+          <button
+            type="button"
+            style={{ border: "none", background: "transparent" }}
+            onClick={() => setUnits(units === "metric" ? "imperial" : "metric")}
+          >
+            {units === "metric" ? (
+              <TbTemperatureCelsius size={20} style={{ marginLeft: "10px", cursor: "pointer" }} />
+            ) : (
+              <TbTemperatureFahrenheit size={20} style={{ cursor: "pointer" }} />
+            )}
+          </button>
         </div>
       </form>
+
       <style jsx>{`
         .styled-input {
           width: 100%;
@@ -31,14 +71,12 @@ const Input = () => {
           border: 1px solid #ccc;
           border-radius: 4px;
           font-size: 16px;
-        
           transition: border-color 0.3s ease, box-shadow 0.3s ease;
           outline: none;
-          {/* margin-right:5px; */}
         }
 
         .styled-input:focus {
-          border-color: #0070f3; /* Accent color */
+          border-color: #0070f3;
           box-shadow: 0 0 5px rgba(0, 112, 243, 0.5);
         }
 
@@ -50,7 +88,6 @@ const Input = () => {
           border-color: #005bb5;
         }
 
-        /* Responsive Design */
         @media (max-width: 600px) {
           .styled-input {
             width: 100%;

@@ -110,6 +110,7 @@ import { DateTime } from "luxon";
 import API_KEYs from "../utils/apiKey";
 
 
+
 const API_KEY =API_KEYs ; // Update with your correct API key
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
 
@@ -172,7 +173,7 @@ const formatForecastWeather = (data: any) => {
       const dayData = dailyForecast[date];
       const avgTemp = dayData.reduce((sum: number, d: any) => sum + d.main.temp, 0) / dayData.length;
       const icon = dayData[0].weather[0].icon; // Icon of the first forecast of the day
-      const title = DateTime.fromISO(date).toFormat("ccc, dd LLL yyyy");
+      const title = DateTime.fromISO(date).toFormat("ccc");
 
       return {
         title,
@@ -210,11 +211,29 @@ const getFormattedWeatherData = async (searchParams: any) => {
 };
 
 // Format Unix timestamp to local time
+// const formatToLocalTime = (
+//   secs: number,
+//   zone: string,
+//   format = "cccc, dd LLL yyyy' | Local time: 'hh:mm a"
+// ) => DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
+
 const formatToLocalTime = (
-  secs: any,
-  zone: any,
-  format = "cccc, dd LLL yyyy' | Local time: 'hh:mm a"
-) => DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
+  secs: number,
+  offsetInSeconds: number, // Offset in seconds
+  format = "cccc, dd LLL yyyy ' | Local time: 'hh:mm a"
+) => {
+  // Convert seconds to milliseconds and create a DateTime object
+  const dateTime = DateTime.fromMillis(secs * 1000);
+  
+  // Calculate the offset in hours and minutes
+  const offsetHours = Math.floor(offsetInSeconds / 3600);
+  const offsetMinutes = (offsetInSeconds % 3600) / 60;
+  
+  // Apply the offset to the DateTime object
+  const localDateTime = dateTime.setZone(`UTC${offsetHours >= 0 ? '+' : '-'}${Math.abs(offsetHours).toString().padStart(2, '0')}:${offsetMinutes.toString().padStart(2, '0')}`);
+
+  return localDateTime.toFormat(format);
+};
 
 // Get icon URL from OpenWeatherMap
 const iconUrlFromCode = (code: any) =>
@@ -222,3 +241,5 @@ const iconUrlFromCode = (code: any) =>
 
 export default getFormattedWeatherData;
 export { formatToLocalTime, iconUrlFromCode };
+
+

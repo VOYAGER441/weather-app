@@ -71,7 +71,7 @@ export default function Home() {
     window.myWidgetParam.push({
       id: 11,
       cityid: "2643743",
-      appid: "add4c14f84c1c44b01836b8e6e586ead",
+      appid: API_KEYs,
       units: "metric",
       containerid: "openweathermap-widget-11",
     });
@@ -82,6 +82,12 @@ export default function Home() {
       document.body.removeChild(weatherWidgetScript);
     };
   }, []);
+
+
+
+
+
+  
 
   return (
     <>

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './component.module.css';
 
-const TopCity=()=>{
+const TopCity= ({ setQuery }: { setQuery: (query: { q: string }) => void })=>{
     const cities=[
         {
             id:1,
@@ -27,7 +27,9 @@ const TopCity=()=>{
     return(<>
     <div className={styles.cities}>
         {cities.map((city)=>(
-            <button key={city.id} className={styles.cityButton}> {city.title} </button>
+            <button key={city.id} className={styles.cityButton}
+            onClick={()=>setQuery({q:city.title})}
+            > {city.title} </button>
         ))}
 
     </div>
