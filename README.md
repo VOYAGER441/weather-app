@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Here is a professional README for your weather website:
 
-## Getting Started
+---
 
-First, run the development server:
+# Weather by MB ☀️🌧️
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Welcome to **Weather by MB** – a sleek, easy-to-use weather forecast web app! 🌦️
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This website provides **live weather updates** and a **5-day forecast** for any location you search, featuring current conditions, real-time temperatures, humidity, wind speed, and sunrise/sunset times. Check out accurate forecasts with clear, minimalistic design.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🔗 **Website**: [Weather by MB](https://weatherbymb.netlify.app/)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+---
 
-## Learn More
+## Features ✨
 
-To learn more about Next.js, take a look at the following resources:
+- **Live Weather Updates**: Get real-time information for any city, including temperature, weather conditions, humidity, wind speed, and more.
+- **5-Day Forecast**: Easily view the weather forecast for the next 5 days to help you plan ahead.
+- **Date & Local Time**: Displays the current date and time based on the city you search.
+- **Sunrise & Sunset Times**: Know when the sun will rise and set for the selected location.
+- **Responsive Design**: Optimized for both mobile and desktop devices.
+  
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Example Output 🌍
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Location**: Mumbai, IN
+- **Date**: Tuesday, 17 Sep 2024 | Local time: 12:32 PM
+- **Condition**: Haze
+- **Temperature**: 30°C (Real feel: 32°C)
+- **Humidity**: 58%
+- **Wind**: 3.6 km/h
+- **Sunrise**: 06:26 AM | **Sunset**: 06:39 PM
+- **Forecast**: 
+  - Wed: 27°C 🌤️
+  - Thu: 27°C 🌦️
+  - Fri: 27°C 🌧️
+  - Sat: 27°C ⛅
+  - Sun: 27°C 🌥️
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## How It Works 💻
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. **Search for a City**: Enter the name of any city, and get instant weather updates for that location.
+2. **View the Forecast**: Scroll down to see the 5-day weather forecast with weather icons and temperature predictions.
+3. **Real-Time Updates**: The data is fetched from a reliable weather API, ensuring up-to-the-minute accuracy.
+
+---
+
+## Technologies Used ⚙️
+
+- **Next.js**: A powerful React framework used for building the frontend.
+- **TypeScript**: Ensures code reliability and maintainability.
+- **WeatherAPI**: Fetches live weather data and forecasts.
+- **Luxon**: Handles all date and time formatting.
+- **Netlify**: For seamless deployment and hosting.
+
+---
+
+## How to Run Locally 🖥️
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/your-username/weatherbymb.git
+   cd weatherbymb
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## Contributing 🤝
+
+Feel free to open issues or pull requests if you want to contribute or suggest improvements!
+
+---
+
+## License 📜
+
+This project is licensed under the **MIT License**.
+
+---
+
+Thanks for visiting **Weather by MB**! 🌍😊
+
+--- 
+
+You can adjust the content further as per your needs. Let me know if you'd like any changes!
