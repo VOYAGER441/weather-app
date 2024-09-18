@@ -73,46 +73,37 @@ export default function Home() {
     const { details, sunrise, sunset, dt, timezone } = weather;
 
     // Get local time based on timezone and current time (dt)
-    const localTime = formatToLocalTime(dt, timezone, "hh:mm a");
+    const localTime = formatToLocalTime(dt, timezone, "HH:mm"); // Use 24-hour format (HH:mm)
 
-    let hour: number = parseInt(localTime.split(":")[0], 10);
-    console.log(hour);
+let hour: number = parseInt(localTime.split(":")[0], 10); // Get the hour in 24-hour format
+console.log(hour);
 
-    // Convert 24-hour format to 12-hour format
-    if (hour === 0) {
-      hour = 12; // midnight
-    } else if (hour > 12) {
-      hour = hour - 12;
-    }
+// Determine the time of day
+let timeOfDay = "";
+if (hour >= 5 && hour < 12) {
+  timeOfDay = "morning";  // From 5 AM to 11:59 AM
+} else if (hour >= 12 && hour < 18) {
+  timeOfDay = "afternoon";  // From 12 PM (noon) to 5:59 PM
+} else {
+  timeOfDay = "night";  // From 6 PM to 4:59 AM
+}
 
-    console.log(hour);
+console.log(timeOfDay);
 
-    // Determine the time of day
-    let timeOfDay = "";
-    if (hour >= 5 && hour < 12) {
-      timeOfDay = "morning";
-    } else if (hour >= 12 && hour < 6) {
-      // afternoon from 12PM to 6PM
-      timeOfDay = "afternoon";
-    } else {
-      timeOfDay = "night"; // night for anything after 6PM and before 5AM
-    }
+// Determine the background based on weather conditions and time of day
+const condition = details.toLowerCase();
+if (condition.includes("rain")) {
+  setBackgroundImg(`../assets/${timeOfDay}_rain.jpg`);
+} else if (condition.includes("haze")) {
+  setBackgroundImg(`../assets/${timeOfDay}_haze.jpg`);
+} else if (condition.includes("clear")) {
+  setBackgroundImg(`../assets/${timeOfDay}_clear.jpg`);
+} else if (condition.includes("clouds")) {
+  setBackgroundImg(`../assets/${timeOfDay}_cloudy.jpg`);
+} else {
+  setBackgroundImg(`../assets/default.jpg`); // Fallback image
+}
 
-    console.log(timeOfDay);
-
-    // Determine the background based on weather conditions and time of day
-    const condition = details.toLowerCase();
-    if (condition.includes("rain")) {
-      setBackgroundImg(`../assets/${timeOfDay}_rain.jpg`);
-    } else if (condition.includes("haze")) {
-      setBackgroundImg(`../assets/${timeOfDay}_haze.jpg`);
-    } else if (condition.includes("clear")) {
-      setBackgroundImg(`../assets/${timeOfDay}_clear.jpg`);
-    } else if (condition.includes("clouds")) {
-      setBackgroundImg(`../assets/${timeOfDay}_cloudy.jpg`);
-    } else {
-      setBackgroundImg(`../assets/default.jpg`); // Fallback image
-    }
   }, [weather]);
 
   return (
