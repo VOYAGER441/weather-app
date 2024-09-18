@@ -27,13 +27,13 @@ export default function Home() {
 
     if (hour >= 5 && hour < 12) {
       console.log("morning");
-      setBackgroundImg("/morning.jpg"); // Adjusted path for Next.js
+      setBackgroundImg("../assets/morning_cloudy.jpg"); // Adjusted path for Next.js
     } else if (hour >= 12 && hour < 18) {
       console.log("afternoon");
-      setBackgroundImg("/afternoon.jpg"); // Adjusted path for Next.js
+      setBackgroundImg("../assets/afternoon_haze.jpg"); // Adjusted path for Next.js
     } else {
       console.log("night");
-      setBackgroundImg("/night.jpg"); // Adjusted path for Next.js
+      setBackgroundImg("../assets/night_haze.jpg"); // Adjusted path for Next.js
     }
 
     // Fetch air pollution data
@@ -101,7 +101,7 @@ export default function Home() {
             <div id="openweathermap-widget-11"></div>
             <br />
             {/* Air Pollution Data Table */}
-            {airPollutionData && (
+            {/* {airPollutionData && ( */}
               <table
                 style={{
                   width: "100%",
@@ -130,7 +130,7 @@ export default function Home() {
                   </tr>
                 </tbody>
               </table>
-            )}
+            {/* )} */}
           </div>
         </div>
       </div>

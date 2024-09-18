@@ -7,7 +7,9 @@ import TopCity from "./component/Topcity";
 import Time from "./component/Time";
 import Temp from "./component/Temp";
 import Forecast from "./component/Forecast";
-import getFormattedData from "./services/weather.services";
+import getFormattedData, {
+  formatToLocalTime,
+} from "./services/weather.services";
 import { useRouter } from "next/navigation";
 import { DateTime } from "luxon"; // Assuming you're using Luxon for date manipulation
 
@@ -71,21 +73,32 @@ export default function Home() {
     const { details, sunrise, sunset, dt, timezone } = weather;
 
     // Get local time based on timezone and current time (dt)
-    const localTime = DateTime.fromSeconds(dt).setZone(`UTC+${timezone / 3600}`);
-    console.log(localTime);
-    
+    const localTime = formatToLocalTime(dt, timezone, "hh:mm a");
 
-    const hour = localTime.hour;
+    let hour: number = parseInt(localTime.split(":")[0], 10);
+    console.log(hour);
+
+    // Convert 24-hour format to 12-hour format
+    if (hour === 0) {
+      hour = 12; // midnight
+    } else if (hour > 12) {
+      hour = hour - 12;
+    }
+
+    console.log(hour);
 
     // Determine the time of day
     let timeOfDay = "";
     if (hour >= 5 && hour < 12) {
       timeOfDay = "morning";
-    } else if (hour >= 12 && hour < 18) {
+    } else if (hour >= 12 && hour < 6) {
+      // afternoon from 12PM to 6PM
       timeOfDay = "afternoon";
     } else {
-      timeOfDay = "night";
+      timeOfDay = "night"; // night for anything after 6PM and before 5AM
     }
+
+    console.log(timeOfDay);
 
     // Determine the background based on weather conditions and time of day
     const condition = details.toLowerCase();
