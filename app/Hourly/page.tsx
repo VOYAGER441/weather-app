@@ -147,7 +147,6 @@ export default function Home() {
             </form>
             <br />
             {/* OpenWeatherMap Widget */}
-            <div id="openweathermap-widget-11"></div>
             <br />
             {/* Weather Data */}
             <p className={styles.title}>Current Weather</p>
@@ -160,7 +159,7 @@ export default function Home() {
                   borderRadius: "5px",
                   color: "white",
                 }}
-              >
+                >
                 <h2>{weatherData.name}</h2>
                 <p>Temperature: {weatherData.main.temp} °C</p>
                 <p>Weather: {weatherData.weather[0].description}</p>
@@ -173,14 +172,14 @@ export default function Home() {
             <p className={styles.title}>Air Pollution Data</p>
             {airPollutionData && airPollutionData.components && (
               <table
-                style={{
+              style={{
                   width: "100%",
                   borderCollapse: "collapse",
                   marginTop: "20px",
                   backgroundColor: "rgba(0, 0, 0, 0.6)",
                   boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
                 }}
-              >
+                >
                 <thead>
                   <tr>
                     <th
@@ -190,7 +189,7 @@ export default function Home() {
                         textAlign: "left",
                         color: "white",
                       }}
-                    >
+                      >
                       Component
                     </th>
                     <th
@@ -215,7 +214,7 @@ export default function Home() {
                             padding: "8px",
                             color: "white",
                           }}
-                        >
+                          >
                           {key}
                         </td>
                         <td
@@ -224,7 +223,7 @@ export default function Home() {
                             padding: "8px",
                             color: "white",
                           }}
-                        >
+                          >
                           {value}
                         </td>
                       </tr>
@@ -246,13 +245,17 @@ export default function Home() {
                         padding: "8px",
                         color: "white",
                       }}
-                    >
+                      >
                       {airPollutionData.main.aqi}
                     </td>
                   </tr>
                 </tbody>
               </table>
             )}
+            <hr/>
+            <div 
+            style={{marginTop:"20px"}}
+            id="openweathermap-widget-11"></div>
           </div>
         </div>
       </div>

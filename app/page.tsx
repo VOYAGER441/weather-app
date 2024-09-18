@@ -75,39 +75,37 @@ export default function Home() {
     // Get local time based on timezone and current time (dt)
     const localTime = formatToLocalTime(dt, timezone, "HH:mm"); // Use 24-hour format (HH:mm)
 
-let hour: number = parseInt(localTime.split(":")[0], 10); // Get the hour in 24-hour format
-console.log(hour);
+    let hour: number = parseInt(localTime.split(":")[0], 10); // Get the hour in 24-hour format
+    console.log(hour);
 
-// Determine the time of day
-let timeOfDay = "";
-if (hour >= 5 && hour < 12) {
-  timeOfDay = "morning";  // From 5 AM to 11:59 AM
-} else if (hour >= 12 && hour < 18) {
-  timeOfDay = "afternoon";  // From 12 PM (noon) to 5:59 PM
-} else {
-  timeOfDay = "night";  // From 6 PM to 4:59 AM
-}
+    // Determine the time of day
+    let timeOfDay = "";
+    if (hour >= 5 && hour < 12) {
+      timeOfDay = "morning"; // From 5 AM to 11:59 AM
+    } else if (hour >= 12 && hour < 18) {
+      timeOfDay = "afternoon"; // From 12 PM (noon) to 5:59 PM
+    } else {
+      timeOfDay = "night"; // From 6 PM to 4:59 AM
+    }
 
-console.log(timeOfDay);
+    console.log(timeOfDay);
 
-// Determine the background based on weather conditions and time of day
-const condition = details.toLowerCase();
-if (condition.includes("rain")) {
-  setBackgroundImg(`../assets/${timeOfDay}_rain.jpg`);
-} else if (condition.includes("haze")) {
-  setBackgroundImg(`../assets/${timeOfDay}_haze.jpg`);
-} else if (condition.includes("clear")) {
-  setBackgroundImg(`../assets/${timeOfDay}_clear.jpg`);
-} else if (condition.includes("clouds")) {
-  setBackgroundImg(`../assets/${timeOfDay}_cloudy.jpg`);
-} else {
-  setBackgroundImg(`../assets/default.jpg`); // Fallback image
-}
-
+    // Determine the background based on weather conditions and time of day
+    const condition = details.toLowerCase();
+    if (condition.includes("rain")) {
+      setBackgroundImg(`../assets/${timeOfDay}_rain.jpg`);
+    } else if (condition.includes("haze")) {
+      setBackgroundImg(`../assets/${timeOfDay}_haze.jpg`);
+    } else if (condition.includes("clear")) {
+      setBackgroundImg(`../assets/${timeOfDay}_clear.jpg`);
+    } else if (condition.includes("clouds")) {
+      setBackgroundImg(`../assets/${timeOfDay}_cloudy.jpg`);
+    } else {
+      setBackgroundImg(`../assets/default.jpg`); // Fallback image
+    }
   }, [weather]);
 
   console.log(weather);
-  
 
   return (
     <>
@@ -142,12 +140,28 @@ if (condition.includes("rain")) {
                 window.util.open(event.currentTarget as HTMLButtonElement)
               }
               style={{
-                padding: "5px",
-                backgroundColor: "transparent",
-                marginTop: "5px",
+                padding: "12px 24px",
+                backgroundColor: "transparent", // Primary blue color
+                color: "#fff", // White text color
+                marginTop: "10px",
                 fontSize: "1rem",
-                borderRadius: "15px",
+                fontWeight: "bold",
+                borderRadius: "30px", // More rounded for a modern look
+                border: "none", // No border for cleaner appearance
+                cursor: "pointer", // Pointer to indicate clickable
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Subtle shadow
+                transition: "background-color 0.3s ease, transform 0.3s ease", // Smooth transition
               }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor = "#0056b3")
+              } // Darken on hover
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor = "#007BFF")
+              } // Revert on leave
+              onMouseDown={(e) =>
+                (e.currentTarget.style.transform = "scale(0.98)")
+              } // Slight press effect
+              onMouseUp={(e) => (e.currentTarget.style.transform = "scale(1)")} // Release effect
             >
               Click Here For More Details
             </button>
