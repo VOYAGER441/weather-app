@@ -16,8 +16,9 @@ declare global {
   }
 }
 
-const AIR_POLLUTION_API_URL = "http://api.openweathermap.org/data/2.5/air_pollution";
-const WEATHER_API_URL = "http://api.openweathermap.org/data/2.5/weather";
+// Use HTTPS endpoints for secure requests
+const AIR_POLLUTION_API_URL = "https://api.openweathermap.org/data/2.5/air_pollution";
+const WEATHER_API_URL = "https://api.openweathermap.org/data/2.5/weather";
 const API_KEY = API_KEYs;
 
 export default function Home() {

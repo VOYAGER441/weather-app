@@ -106,6 +106,9 @@ if (condition.includes("rain")) {
 
   }, [weather]);
 
+  console.log(weather);
+  
+
   return (
     <>
       <div

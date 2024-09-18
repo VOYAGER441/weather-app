@@ -8,6 +8,10 @@ import { formatToLocalTime } from "../services/weather.services";
 const Temp = ({weather:{
   details,icon,temp,temp_max,temp_min,timezone,sunrise,sunset,speed,humidity,feels_like
 }}:any) => {
+
+  console.log("temp_min");
+  console.log(temp_min);
+  
   return (
     <>
       <div
@@ -142,7 +146,7 @@ const Temp = ({weather:{
 
           <Unicons.UilSun />
           <p style={{ fontSize: ".7rem",margin:"5px"}}>
-            Low:<span style={{fontWeight:"600"}}> {`${temp_min.temp}°`}</span>
+            Low:<span style={{fontWeight:"600"}}> {`${temp_min.toFixed()}°`}</span>
           </p>
         </div>
       </div>
